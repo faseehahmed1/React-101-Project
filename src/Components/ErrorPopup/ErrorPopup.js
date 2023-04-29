@@ -1,12 +1,15 @@
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import classes from "./ErrorPopup.module.css";
+import ReactDom from 'react-dom';
 
-const ErrorPopup = (props) => {
+const Backdrop = (props)=>{
+return (<div className={classes.backdrop} onClick={props.onClick}></div>)
+}
+
+const Overlay = (props)=>{
   return (
-    <div>
-      <div className={classes.backdrop} onClick={props.onClick}>
-      <Card className={classes.modal}>
+    <Card className={classes.modal}>
         <header className={classes.header}>
           <h2>{props.title}</h2>
         </header>
@@ -17,7 +20,14 @@ const ErrorPopup = (props) => {
           <Button onClick={props.onClick}>Okay</Button>
         </footer>
       </Card>
-      </div>
+  )
+}
+
+const ErrorPopup = (props) => {
+  return (
+    <div>
+      {ReactDom.createPortal(<Backdrop onClick={props.onClick}/>, document.getElementById('backdrop-root'))}
+      {ReactDom.createPortal(<Overlay title={props.title} message={props.message} onClick={props.onClick}/>, document.getElementById('overlay-root'))}
     </div>
   );
 };

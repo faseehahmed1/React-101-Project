@@ -42,41 +42,41 @@ const Form = ({ setItems }) => {
   }
 
   return (
-    <div>
-      {error && (
-        <ErrorPopup
-          onClick={() => {
-            setError(false);
+    <>
+    {error && (
+      <ErrorPopup
+        onClick={() => {
+          setError(false);
+        }}
+        title={errorObj.title}
+        message={errorObj.message}
+      />
+    )}
+    <Card className={styles.container}>
+      <form onSubmit={addHandleUser}>
+        <label>Name</label>
+        <input
+          value={name}
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
           }}
-          title={errorObj.title}
-          message={errorObj.message}
-        />
-      )}
-      <Card className={styles.container}>
-        <form onSubmit={addHandleUser}>
-          <label>Name</label>
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          ></input>
-          <label>Age</label>
-          <input
-            value={age}
-            type="number"
-            min={0}
-            onChange={(e) => {
-              setAge(e.target.value);
-            }}
-          ></input>
-          <Button type="submit" onClick={addHandleUser}>
-            Add user
-          </Button>
-        </form>
-      </Card>
-    </div>
+        ></input>
+        <label>Age</label>
+        <input
+          value={age}
+          type="number"
+          min={0}
+          onChange={(e) => {
+            setAge(e.target.value);
+          }}
+        ></input>
+        <Button type="submit" onClick={addHandleUser}>
+          Add user
+        </Button>
+      </form>
+    </Card>
+  </>
   );
 };
 
