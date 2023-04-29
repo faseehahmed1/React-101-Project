@@ -5,7 +5,7 @@
 
 I built an app that allows users to be added to a list. This project implements basic concepts of React:
 
-- Using React hook useState
+- Using React hook useState and useRef
 - Reusing components
 - Using CSS modules
 - Learnt how to use localStorage

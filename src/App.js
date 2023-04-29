@@ -7,7 +7,6 @@ function App() {
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem("items")) || []
   );
-  console.log(JSON.parse(localStorage.getItem("items")));
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));

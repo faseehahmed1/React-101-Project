@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./Form.module.css";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import Card from "../Card/Card";
 import Button from "../Button/Button";
 
 const Form = ({ setItems }) => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+  let name = nameInputRef.current.value;
+  let age = ageInputRef.current.value;
   const [error, setError] = useState(false);
   const [errorObj, setErrorObj] = useState({
     title: "Error",
@@ -37,46 +39,40 @@ const Form = ({ setItems }) => {
         age: +age,
       },
     ]);
-    setName("");
-    setAge("");
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   }
 
   return (
     <>
-    {error && (
-      <ErrorPopup
-        onClick={() => {
-          setError(false);
-        }}
-        title={errorObj.title}
-        message={errorObj.message}
-      />
-    )}
-    <Card className={styles.container}>
-      <form onSubmit={addHandleUser}>
-        <label>Name</label>
-        <input
-          value={name}
-          type="text"
-          onChange={(e) => {
-            setName(e.target.value);
+      {error && (
+        <ErrorPopup
+          onClick={() => {
+            setError(false);
           }}
-        ></input>
-        <label>Age</label>
-        <input
-          value={age}
-          type="number"
-          min={0}
-          onChange={(e) => {
-            setAge(e.target.value);
-          }}
-        ></input>
-        <Button type="submit" onClick={addHandleUser}>
-          Add user
-        </Button>
-      </form>
-    </Card>
-  </>
+          title={errorObj.title}
+          message={errorObj.message}
+        />
+      )}
+      <Card className={styles.container}>
+        <form onSubmit={addHandleUser}>
+          <label>Name</label>
+          <input
+            type="text"
+            ref={nameInputRef}
+          ></input>
+          <label>Age</label>
+          <input
+            type="number"
+            min={0}
+            ref={ageInputRef}
+          ></input>
+          <Button type="submit" onClick={addHandleUser}>
+            Add user
+          </Button>
+        </form>
+      </Card>
+    </>
   );
 };
 
