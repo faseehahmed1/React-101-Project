@@ -10,6 +10,7 @@ I built an app that allows users to be added to a list. This project implements 
 - Using CSS modules
 - Learnt how to use localStorage
 - User feedback for invalid inputs
+- Used Portals to render modal outside the DOM
 
 - `Assets` folder includes useful info such as Component Tree.
 
