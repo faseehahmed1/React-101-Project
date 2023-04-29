@@ -15,7 +15,12 @@ const Form = ({ setItems }) => {
 
   function addHandleUser(event) {
     event.preventDefault();
-    if (name.trim().length === 0 || +age <= 0) {
+    if (name.trim().length === 0 || age.trim().length === 0) {
+      setError(true);
+      return;
+    }
+    if (+age <= 0) {
+      setErrorObj({ title: "Error", message: "Age must be more than 0!" });
       setError(true);
       return;
     }
@@ -27,7 +32,10 @@ const Form = ({ setItems }) => {
 
     setItems((prevData) => [
       ...prevData,
-      { name: name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()), age: +age },
+      {
+        name: name.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()),
+        age: +age,
+      },
     ]);
     setName("");
     setAge("");

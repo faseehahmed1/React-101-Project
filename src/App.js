@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import styles from './App.module.css'
 import Form from './Components/Form/Form';
 import DisplayList from './Components/DisplayList/DisplayList';
-import ErrorPopup from './Components/ErrorPopup/ErrorPopup';
 import { useState, useEffect } from 'react';
 
 function App() {
