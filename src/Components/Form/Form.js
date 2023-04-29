@@ -25,7 +25,7 @@ const Form = ({ setItems }) => {
       return;
     }
     if (/^[a-z ]+$/i.test(name) === false) {
-      setErrorObj({ title: "Error", message: "Name can on have letters!" });
+      setErrorObj({ title: "Error", message: "Name can only have letters!" });
       setError(true);
       return;
     }
